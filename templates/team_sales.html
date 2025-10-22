@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Team Sales{% endblock %}
+{% block content %}
+<h3>Team Sales</h3>
+<table class="table table-bordered">
+  <thead class="table-light">
+    <tr>
+      <th>Employee</th>
+      <th>Sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in employees %}
+    <tr>
+      <td>{{ e[0] }}</td>
+      <td>₹{{ "%.2f"|format(e[1] or 0) }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="2" class="text-center">No employees</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<footer style="position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; text-align:center; padding:10px 0;">
+  &copy; 2025 R.Vishwa Janagan. All rights reserved.
+</footer>
+{% endblock %}

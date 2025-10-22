@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}My Stats{% endblock %}
+{% block content %}
+<h3>My Stats</h3>
+<ul class="list-group">
+  <li class="list-group-item">Total Sales: <strong>₹{{ "%.2f"|format(sales or 0) }}</strong></li>
+  <li class="list-group-item">Total Profit: <strong>₹{{ "%.2f"|format(profit or 0) }}</strong></li>
+</ul>
+<footer style="position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; text-align:center; padding:10px 0;">
+  &copy; 2025 R.Vishwa Janagan. All rights reserved.
+</footer>
+{% endblock %}

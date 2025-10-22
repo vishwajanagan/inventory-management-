@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<h3>Admin Panel</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>Add User</h5>
+        <form method="POST" action="{{ url_for('admin_add_user') }}" class="row g-2">
+          <div class="col-12"><input name="name" class="form-control" placeholder="Name" required></div>
+          <div class="col-12">
+            <select name="role" class="form-select" required>
+              <option value="employee">Employee</option>
+              <option value="manager">Manager</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="col-12"><input name="password" type="password" class="form-control" placeholder="Password" required></div>
+          <div class="col-12"><button class="btn btn-success">Add User</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5>Reset Password</h5>
+        <form method="POST" action="{{ url_for('admin_reset_password') }}" class="row g-2">
+          <div class="col-6"><input name="user_id" type="number" class="form-control" placeholder="User ID" required></div>
+          <div class="col-6"><input name="new_password" type="password" class="form-control" placeholder="New Password" required></div>
+          <div class="col-12"><button class="btn btn-warning mt-2">Reset</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5>Remove User</h5>
+        <form method="POST" action="{{ url_for('admin_remove_user') }}" class="row g-2">
+          <div class="col-8"><input name="user_id" type="number" class="form-control" placeholder="User ID" required></div>
+          <div class="col-4"><button class="btn btn-danger">Remove</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <h5>All Users</h5>
+      <table class="table table-sm table-bordered">
+        <thead class="table-light"><tr><th>ID</th><th>Name</th><th>Role</th><th>Sales</th></tr></thead>
+        <tbody>
+          {% for u in users %}
+          <tr>
+            <td>{{ u[0] }}</td>
+            <td>{{ u[1] }}</td>
+            <td>{{ u[2] }}</td>
+            <td>₹{{ "%.2f"|format(u[3] or 0) }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4" class="text-center">No users</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<footer style="position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; text-align:center; padding:10px 0;">
+  &copy; 2025 R.Vishwa Janagan. All rights reserved.
+</footer>
+
+{% endblock %}

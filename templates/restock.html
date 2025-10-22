@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Restock{% endblock %}
+{% block content %}
+<h3>Restock Product</h3>
+<form method="POST" class="row g-3">
+  <div class="col-md-8">
+    <label class="form-label">Product</label>
+    <select name="product_id" class="form-select" required>
+      {% for p in products %}
+      <option value="{{ p[0] }}">{{ p[1] }} (In stock: {{ p[2] }})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Quantity to add</label>
+    <input name="quantity" type="number" class="form-control" value="1" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Restock</button>
+    <a class="btn btn-secondary" href="{{ url_for('products') }}">Cancel</a>
+  </div>
+</form>
+<footer style="position:fixed; bottom:0; left:0; width:100%; background:#111; color:#fff; text-align:center; padding:10px 0;">
+  &copy; 2025 R.Vishwa Janagan. All rights reserved.
+</footer>{% endblock %}
+
